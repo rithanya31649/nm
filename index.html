@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Market Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📊 Financial Market Dashboard</h1>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Cryptocurrency (Bitcoin)</h2>
+      <p>Price: <span id="btcPrice">--</span> USD</p>
+      <p>24h Change: <span id="btcChange">--</span>%</p>
+      <canvas id="btcChart"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>Stock (Apple - AAPL)</h2>
+      <p>Price: <span id="stockPrice">--</span> USD</p>
+      <p>Daily Change: <span id="stockChange">--</span>%</p>
+      <canvas id="stockChart"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    <p>Powered by CoinGecko & Alpha Vantage APIs</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
