@@ -4,9 +4,9 @@ async function fetchCrypto() {
     let res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true");
     let data = await res.json();
     document.getElementById("btcPrice").innerText = data.bitcoin.usd.toFixed(2);
-    document.getElementById("btcChange").innerText = data.bitcoin.usd_24h_change.toFixed(2);
+    document.getElementById("btcChange").innerText = data.bitcoin.usd_24h_change.toFixed(2) + "%";
 
-    // Chart data (mock for 7 days historical price)
+    // 7-day history for chart
     let history = [];
     let labels = [];
     let histRes = await fetch("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7");
@@ -48,7 +48,7 @@ async function fetchStock() {
     let change = ((prices[prices.length-1] - prices[0]) / prices[0] * 100).toFixed(2);
 
     document.getElementById("stockPrice").innerText = prices[prices.length-1].toFixed(2);
-    document.getElementById("stockChange").innerText = change;
+    document.getElementById("stockChange").innerText = change + "%";
 
     new Chart(document.getElementById("stockChart"), {
       type: "line",
@@ -68,6 +68,21 @@ async function fetchStock() {
   }
 }
 
+// ------------------ Portfolio Pie Chart ------------------
+function loadPieChart() {
+  new Chart(document.getElementById("pieChart"), {
+    type: "pie",
+    data: {
+      labels: ["Bitcoin", "Apple Stock", "Cash"],
+      datasets: [{
+        data: [40, 35, 25],
+        backgroundColor: ["#f39c12", "#3498db", "#2ecc71"]
+      }]
+    }
+  });
+}
+
 // ------------------ Initialize ------------------
 fetchCrypto();
 fetchStock();
+loadPieChart();
